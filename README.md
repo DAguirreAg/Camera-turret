@@ -33,9 +33,12 @@ Once the urdf is prepared, we create a simple script ("joy_to_command.py") that 
 </p>
 
 ### Gazebo simulation
+The camera-turret is composed of 3 links, the base_link, the mobile_link and the camera_link. There are two joints, one between the base_link and the mobile_link and another one between the mobile_link and the camera_link. Below you can find the described setup:
 
-
-
+<p align="middle">
+  <img src="/images/Gazebo setup normal view.png" alt="Gazebo setup normal view" >
+  <img src="/images/Gazebo setup wireframe view.png" alt="Gazebo setup wireframe view" >
+</p>
 
 Once everything is setup, the whole result should be the following:
 <p align="center">
