@@ -27,15 +27,21 @@ For controlling the "robot", we want to pass it a couple of positional commands 
 
 Once the urdf is prepared, we create a simple script ("joy_to_command.py") that converts the readings from a joysticks into an actual commands for the "robot". The reading of the joysticks is handled by the "Joy_node" which is loaded from the ["Joy" ROS package](https://wiki.ros.org/joy). All this gives a result the following graph:
 
-!!!! INSERT IMAGE !!!!
-
+<p align="center">
+  <img src="images/Joystick reader-sender setup.jpg" width=600><br/>
+  <i>Joystick reader-sender setup</i>
+</p>
 
 ### Gazebo simulation
 
 
 
 
-
+Once everything is setup, the whole result should be the following:
+<p align="center">
+  <img src="images/Complete setup.jpg" width=900><br/>
+  <i>Joystick reader-sender setup</i>
+</p>
 
 ## Requirements
 You should install the following:
@@ -44,19 +50,4 @@ You should install the following:
 * Python
 * Joy (ROS package)
 * USB joystick
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
