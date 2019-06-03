@@ -2,9 +2,8 @@
 A simple ROS-Gazebo package to control the rotation of a two axis camera with a joystick
 
 <p align="middle">
-  <img src="/images/Joystick being played.gif" alt="Joystick being played" width=400>
-  <img src="/images/Camera turret controlled by a joystick.gif" alt="Camera turret controlled by a joystick" width=400>
-
+  <img src="/images/Joystick being played.gif" alt="Joystick being played" width=300>
+  <img src="/images/Controlled camera.gif" alt="Camera controlled by a joystick.gif" width=300>
 </p>
 
 ## Introduction
