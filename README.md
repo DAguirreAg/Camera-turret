@@ -1,5 +1,11 @@
 # Camera-turret
-A simple ROS-Gazebo package to control the rotation of a two axis camera
+A simple ROS-Gazebo package to control the rotation of a two axis camera with a joystick
+
+<p align="middle">
+  <img src="/images/Joystick being played.gif" alt="Joystick being played" width=400>
+  <img src="/images/Camera turret controlled by a joystick.gif" alt="Camera turret controlled by a joystick" width=400>
+
+</p>
 
 ## Introduction
 The following respository holds a ROS package that simulates a 2DOF camera turret which can be controlled with a joystick.
