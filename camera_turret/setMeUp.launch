@@ -22,7 +22,11 @@
     <remap from="command1" to="/position_controller1/command"/>
     <remap from="command2" to="/position_controller2/command"/>
   </node>
+  
+  <!-- Load image_view_node to visualize camera's output-->
+  <node name="image_view_node" pkg="image_view" type="image_view" args="image:=/camera1/image_raw"/>
 
+  <!-- Load rqt_graph to visualize this packages ROS graph-->
   <node name="rqt_graph" pkg="rqt_graph" type="rqt_graph"/>
 
 </launch>
