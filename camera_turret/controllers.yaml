@@ -1,0 +1,28 @@
+# Position controllers ---------------------------------------
+position_controller1:
+  type: position_controllers/JointPositionController
+  joint: mobileBase_joint
+  pid: {p: 0.1, i: 0.01, d: 0.1}
+
+position_controller2:
+  type: position_controllers/JointPositionController
+  joint: camera_joint
+  pid: {p: 0.001, i: 0.00, d: 0.0005}
+
+gazebo_ros_control:
+  pid_gains:
+    mobileBase_joint:
+      p: 1.0
+      i: 0.1
+      d: 0.01
+    camera_joint:
+      p: 1.0
+      i: 0.1
+      d: 0.01
+
+# Publish all joint states -----------------------------------  
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+  
+  

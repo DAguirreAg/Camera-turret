@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="camera_turret">
+  <link name="world"/>
+  
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.06" radius="0.12"/>
+      </geometry>
+      <material name="silver">
+        <color rgba="0.75 0.75 0.75 1"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.06" radius="0.12"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.03"/>
+      <inertia ixx="0.0027" iyy="0.0027" izz="0.005" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  
+  <link name="mobile_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.05 0.08 0.02"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.05 0.08 0.02"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <inertial>
+      <mass value="0.3" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1.7e-4" ixy="0" ixz="0" iyy="7.25e-5" iyz="0" izz="2.225e-4" />
+    </inertial>
+    
+    <!--Left ear-->
+    <collision>
+      <origin xyz="0 -0.03 0.045" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.04 0.02 0.07"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 -0.03 0.045" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.04 0.02 0.07"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <inertial>
+      <mass value="0.3" />
+      <origin xyz="0 -0.03 0.045" rpy="0 0 0"/>
+      <inertia ixx="1.325e-4" ixy="0" ixz="0" iyy="1.625e-4" iyz="0" izz="5e-5" />
+    </inertial>
+    
+    <!--Right ear-->
+    <collision>
+      <origin xyz="0 0.03 0.045" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.04 0.02 0.07"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0.03 0.045" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.04 0.02 0.07"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <inertial>
+      <mass value="0.3" />
+      <origin xyz="0 0.03 0.045" rpy="0 0 0"/>
+      <inertia ixx="1.325e-4" ixy="0" ixz="0" iyy="1.625e-4" iyz="0" izz="5e-5" />
+    </inertial>    
+  </link>  
+  <joint name="mobileBase_joint" type="continuous">
+    <axis xyz="0 0 1" />
+    <origin xyz="0 0 0.07" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="mobile_link"/>
+  </joint>  
+
+
+  <link name="camera_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.06 0.04 0.04"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.06 0.04 0.04"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <inertial>
+      <mass value="0.2" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="8e-5" ixy="0" ixz="0" iyy="1.3e-4" iyz="0" izz="1.3e-4" />
+    </inertial>
+  </link>
+  <joint name="camera_joint" type="continuous">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 0.07" rpy="0 0 0"/>
+    <parent link="mobile_link"/>
+    <child link="camera_link"/>
+  </joint>  
+
+  <!-- control plugin-->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+  
+  <!-- Transmissions -->
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="mobileBase_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="camera_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+  
+</robot>
