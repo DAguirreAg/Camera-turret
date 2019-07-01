@@ -25,10 +25,10 @@ There are three main parts you should care look around:
 * launch file: It holds the code that will be executed by roslaunch and it will set up all the nodes and simulation accordingly.
 
 ## Getting into details
-This repositories can be divided into two main components, the simulation and the ROS environment. Below code is for more in-depth details and all the below explanation is done automatically by the system when calling by `roslaunch setMeUp.launch`.
+This repository can be divided into two main components, the simulation and the ROS environment. Below code is for a more in-depth explanation, which you shouldn't care about as it is done automatically by the system when using `roslaunch setMeUp.launch`.
 
 ### ROS environment
-For controlling the "robot", we want to pass it a couple of positional commands to control the 2DOF of the system. As in this case we will be connecting the ROS environment to a simulated world, we add the `libgazebo_ros_control.so` plugin to the URDF to allow a communication between ROS and Gazebo and we add some `transmission_interface`s to allow for a positional control.
+For controlling the "robot", we want to pass a couple of positional commands to control the 2DOF of the system. As in this case we will be connecting the ROS environment to a simulated world, we add the `libgazebo_ros_control.so` plugin to the URDF to allow a communication between ROS and Gazebo and we add some `transmission_interface`s to allow for a positional control.
 
 Once the urdf is prepared, we create a simple script ("joy_to_command.py") that converts the readings from a joystick into an actual commands for the "robot". The reading of the joysticks is handled by the "Joy_node" which is loaded from the ["Joy" ROS package](https://wiki.ros.org/joy). All this gives a result the following graph:
 
