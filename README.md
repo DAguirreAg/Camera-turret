@@ -48,7 +48,7 @@ The camera-turret is composed of 3 links, the base_link, the mobile_link and the
 Once everything is setup, the whole result should be the following:
 <p align="center">
   <img src="images/Complete setup.jpg" width=900><br/>
-  <i>Joystick reader-sender setup</i>
+  <i>Complete ROS setup</i>
 </p>
 
 ## Requirements
