@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- Load the camera_turret URDF model into the parameter server -->
+  <param name="robot_description" textfile="$(find camera_turret)/urdf/camera_turret.urdf"/>
+  
+  <!-- Start Gazebo with an empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+  
+  <!-- Spawn a the camera_turret robot in Gazebo, taking the description from the parameter server -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model camera_turret"/>
+  
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find camera_turret)/controllers.yaml" command="load"/>
+
+  <!-- Load joint controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" args="position_controller1 position_controller2 joint_state_controller"/>
+
+  <!-- Load Joy reader and command sender-->
+  <node name="joy_node" pkg="joy" type="joy_node"/>
+
+  <node name="joy_to_command" pkg="camera_turret" type="joy_to_command.py">
+    <remap from="command1" to="/position_controller1/command"/>
+    <remap from="command2" to="/position_controller2/command"/>
+  </node>
+
+  <!-- Load image_view_node to visualize camera's output-->
+  <node name="image_view_node" pkg="image_view" type="image_view" args="image:=/camera1/image_raw"/>
+
+  <!-- Load rqt_graph to visualize this packages ROS graph-->
+  <node name="rqt_graph" pkg="rqt_graph" type="rqt_graph"/>
+
+</launch>
