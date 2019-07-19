@@ -48,7 +48,7 @@ The servomotors' control is done using an Arduino UNO. However, keep in mind tha
   <img src="/images/Electronics assembled.jpg" alt="Electronics" width=400>
 </p>
 
-Don't forget to load the program included [here]() in your Arduino UNO.
+Don't forget to load the program included [here](https://github.com/DAguirreAg/Camera-turret/tree/master/camera_turret_3D_printer/arduino/camera_turret_servos_control) in your Arduino UNO.
 
 
 ### 2.4. How the ROS package is divided
